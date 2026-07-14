@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="glass-bg"></div>
+
+
+<div class="login-box">
+  <h2>Login</h2>
+
+  <input type="text" id="username" placeholder="Username">
+
+  <div class="password-box">
+    <input type="password" id="password" placeholder="Password">
+    <span class="eye" onclick="togglePassword()">👁️</span>
+  </div>
+
+  <p class="forgot" onclick="openForgot()">Forgot Password?</p>
+
+  
+ <button onclick="login()">Login</button>
+
+
+  <p id="msg"></p>
+</div>
+
+
+
+
+<div id="forgot-box">
+  <div class="forgot-card">
+    <h3>Reset Password</h3>
+    <input type="text" placeholder="Enter username or email">
+    <button onclick="closeForgot()">Send Reset Link</button>
+  </div>
+</div>
+
+
+<script src="login.js"></script>
+<!-- Loading Overlay -->
+<div id="loading-screen">
+  <div class="loader"></div>
+  <p>Please wait...</p>
+</div>
+
+
+</body>
+</html>
+

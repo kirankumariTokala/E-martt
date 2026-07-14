@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>E-Mart | Home</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        span.wishlist { cursor: pointer; color: red; font-size: 20px; }
+        .row{
+            display: flex;
+            gap:20px;
+            margin-bottom: 20px;
+        }
+        .product-cart {
+            flex: 1;
+            min-width: 200px;
+            max-width: 300px;
+        }
+    </style>
+</head>
+<body>
+   
+
+<header>
+    <h1>E-Mart</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="categories.html">Categories</a>
+
+        <a href="cart.html">
+  Cart <span id="cart-count">0</span>
+</a>
+
+        <a href="wishlist.html">Wishlist</a>
+         <a href="about.html">About</a>
+         <a href="orders.html">My Orders</a>
+
+
+    </nav>
+</header>
+
+<section class="banner">
+    <h2>Big Sale – Up to 25% Off</h2>
+    <p>Shop Latest Gadgets</p>
+</section>
+<div class="search-box">
+    <input type="text" id="search" placeholder="Search products..." onkeyup="searchProducts()">
+    <button onclick="clearSearch()">❌</button>
+</div>
+
+<p id="no-results" style="display:none; text-align:center; font-size:18px; color:gray;">
+    No products found 😔
+</p>
+
+
+
+<!-- ================= MOBILES ================= -->
+<section class="products">
+    <h3>Featured Products</h3>
+    <h4 class="left-heading">Mobiles</h4>
+    <div id="product-container"></div>
+
+        <div class="product-card">
+            <img src="Images/mobile.jpg" alt="OPPO" onclick="location.href='product.html?id=1'">
+            <h3>OPPO</h3>
+            <p>₹20,000</p>
+            <button onclick="addToCartById(1)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(1)">❤️</span>
+        </div>
+
+        <div class="product-card">
+            <img src="Images/mobile2.jpg" alt="iPhone 13" onclick="location.href='product.html?id=2'">
+            <h3>iPhone 13</h3>
+            <p>₹55,000</p>
+            <button onclick="addToCartById(2)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(2)">❤️</span>
+        </div>
+
+        <div class="product-card">
+            <img src="Images/mobile3.jpg" alt="OnePlus Nord" onclick="location.href='product.html?id=3'">
+            <h3>OnePlus Nord</h3>
+            <p>₹30,000</p>
+            <button onclick="addToCartById(3)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(3)">❤️</span>
+        </div>
+
+        <div class="product-card">
+            <img src="Images/mobile4.jpg" alt="Redmi Note" onclick="location.href='product.html?id=4'">
+            <h3>Redmi Note</h3>
+            <p>₹18,000</p>
+            <button onclick="addToCartById(4)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(4)">❤️</span>
+        </div>
+
+        <div class="product-card">
+            <img src="Images/mobile5.jpg" alt="Realme 11" onclick="location.href='product.html?id=5'">
+            <h3>Realme 11</h3>
+            <p>₹25,000</p>
+            <button onclick="addToCartById(5)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(5)">❤️</span>
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= LAPTOPS ================= -->
+<section class="products">
+    <h3 class="left-heading">Laptops</h3>
+    <div class="product-container">
+
+        <div class="product-card">
+            <img src="Images/laptop1.jpg" alt="ASUS Vivobook" onclick="location.href='product.html?id=6'">
+            <h3>ASUS Vivobook</h3>
+            <p>₹55,000</p>
+            <button onclick="addToCartById(6)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(6)">❤️</span>
+        </div>
+
+        <div class="product-card">
+            <img src="Images/laptop2.jpg" alt="Lenovo IdeaPad" onclick="location.href='product.html?id=7'">
+            <h3>Lenovo IdeaPad</h3>
+            <p>₹60,000</p>
+            <button onclick="addToCartById(7)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(7)">❤️</span>
+        </div>
+
+        <div class="product-card">
+            <img src="Images/laptop3.jpg" alt="Apple MacBook" onclick="location.href='product.html?id=8'">
+            <h3>Apple MacBook</h3>
+            <p>₹95,000</p>
+            <button onclick="addToCartById(8)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(8)">❤️</span>
+        </div>
+
+        <div class="product-card">
+            <img src="Images/laptop4.jpg" alt="HP Pavilion" onclick="location.href='product.html?id=9'">
+            <h3>HP Pavilion</h3>
+            <p>₹65,000</p>
+            <button onclick="addToCartById(9)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(9)">❤️</span>
+        </div>
+
+        <div class="product-card">
+            <img src="Images/laptop5.jpg" alt="VICTUS" onclick="location.href='product.html?id=10'">
+            <h3>VICTUS</h3>
+            <p>₹46,000</p>
+            <button onclick="addToCartById(10)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(10)">❤️</span>
+        </div>
+
+        <div class="product-card">
+            <img src="Images/laptop6.jpg" alt="Acer Aspire" onclick="location.href='product.html?id=11'">
+            <h3>Acer Aspire</h3>
+            <p>₹75,000</p>
+            <button onclick="addToCartById(11)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(11)">❤️</span>
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= SMART WATCHES ================= -->
+<section class="products">
+    <h3 class="left-heading">Smart Watches</h3>
+    <div class="product-container">
+
+        <div class="product-card">
+            <img src="Images/watch.jpg" alt="Apple Watch Series 8" onclick="location.href='product.html?id=12'">
+            <h3>Apple Watch Series 8</h3>
+            <p>₹45,000</p>
+            <button onclick="addToCartById(12)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(12)">❤️</span>
+        </div>
+
+        <div class="product-card">
+            <img src="Images/watch2.jpg" alt="Samsung Galaxy Watch 5" onclick="location.href='product.html?id=13'">
+            <h3>Samsung Galaxy Watch 5</h3>
+            <p>₹35,000</p>
+            <button onclick="addToCartById(13)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(13)">❤️</span>
+        </div>
+
+        <div class="product-card">
+            <img src="Images/watch3.jpg" alt="Fossil Gen 6" onclick="location.href='product.html?id=14'">
+            <h3>Fossil Gen 6</h3>
+            <p>₹20,000</p>
+            <button onclick="addToCartById(14)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(14)">❤️</span>
+        </div>
+
+        <div class="product-card">
+            <img src="Images/watch4.jpg" alt="Realme Watch 3" onclick="location.href='product.html?id=15'">
+            <h3>Realme Watch 3</h3>
+            <p>₹8,000</p>
+            <button onclick="addToCartById(15)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(15)">❤️</span>
+        </div>
+
+        <div class="product-card">
+            <img src="Images/watch5.jpg" alt="Noise ColorFit Ultra" onclick="location.href='product.html?id=16'">
+            <h3>Noise ColorFit Ultra</h3>
+            <p>₹6,500</p>
+            <button onclick="addToCartById(16)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(16)">❤️</span>
+        </div>
+
+        <div class="product-card">
+            <img src="Images/watch6.jpg" alt="boAt Wave Pro" onclick="location.href='product.html?id=17'">
+            <h3>boAt Wave Pro</h3>
+            <p>₹5,000</p>
+            <button onclick="addToCartById(17)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(17)">❤️</span>
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= AIR CONDITIONERS ================= -->
+<section class="products">
+    <h3 class="left-heading">Air Conditioners</h3>
+    <div class="product-container">
+
+        <div class="product-card">
+            <img src="Images/ac2.jpg" alt="LG Dual Inverter" onclick="location.href='product.html?id=18'">
+            <h3>LG Dual Inverter</h3>
+            <p>₹40,000</p>
+            <button onclick="addToCartById(18)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(18)">❤️</span>
+        </div>
+
+        <div class="product-card">
+            <img src="Images/ac3.jpg" alt="FALCON" onclick="location.href='product.html?id=19'">
+            <h3>FALCON</h3>
+            <p>₹38,000</p>
+            <button onclick="addToCartById(19)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(19)">❤️</span>
+        </div>
+
+        <div class="product-card">
+            <img src="Images/ac4.jpg" alt="Samsung 1.5 Ton" onclick="location.href='product.html?id=20'">
+            <h3>Samsung 1.5 Ton</h3>
+            <p>₹32,000</p>
+            <button onclick="addToCartById(20)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(20)">❤️</span>
+        </div>
+
+        <div class="product-card">
+            <img src="Images/ac5.jpg" alt="Haier 1.5 Ton" onclick="location.href='product.html?id=21'">
+            <h3>Haier 1.5 Ton</h3>
+            <p>₹37,000</p>
+            <button onclick="addToCartById(21)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(21)">❤️</span>
+        </div>
+
+        <div class="product-card">
+            <img src="Images/ac6.jpg" alt="Blue Star 1 Ton" onclick="location.href='product.html?id=22'">
+            <h3>Blue Star 1 Ton</h3>
+            <p>₹33,000</p>
+            <button onclick="addToCartById(22)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(22)">❤️</span>
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= EARBUDS ================= -->
+<section class="products">
+    <h3 class="left-heading">Earbuds</h3>
+    <div class="product-container">
+
+        <div class="product-card">
+            <img src="Images/buds.jpg" alt="boAt Airdopes 131" onclick="location.href='product.html?id=23'">
+            <h3>boAt Airdopes 131</h3>
+            <p>₹1,200</p>
+            <button onclick="addToCartById(23)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(23)">❤️</span>
+        </div>
+
+        <div class="product-card">
+            <img src="Images/buds2.jpg" alt="boAt Airdopes 112" onclick="location.href='product.html?id=24'">
+            <h3>boAt Airdopes 112</h3>
+            <p>₹3,000</p>
+            <button onclick="addToCartById(24)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(24)">❤️</span>
+        </div>
+
+        <div class="product-card">
+            <img src="Images/buds3.jpg" alt="Realme Buds Q2" onclick="location.href='product.html?id=25'">
+            <h3>Realme Buds Q2</h3>
+            <p>₹1,500</p>
+            <button onclick="addToCartById(25)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(25)">❤️</span>
+        </div>
+
+        <div class="product-card">
+            <img src="Images/buds4.jpg" alt="Noise Air Buds" onclick="location.href='product.html?id=26'">
+            <h3>Noise Air Buds</h3>
+            <p>₹1,800</p>
+            <button onclick="addToCartById(26)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(26)">❤️</span>
+        </div>
+
+        <div class="product-card">
+            <img src="Images/buds5.jpg" alt="Samsung Galaxy Buds" onclick="location.href='product.html?id=27'">
+            <h3>Samsung Galaxy Buds</h3>
+            <p>₹1,000</p>
+            <button onclick="addToCartById(27)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(27)">❤️</span>
+        </div>
+
+        <div class="product-card">
+            <img src="Images/buds6.jpg" alt="Samsung Galaxy Buds 2" onclick="location.href='product.html?id=28'">
+            <h3>Samsung Galaxy Buds 2</h3>
+            <p>₹3,500</p>
+            <button onclick="addToCartById(28)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(28)">❤️</span>
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= TELEVISIONS ================= -->
+<section class="products">
+    <h3 class="left-heading">Televisions</h3>
+    <div class="product-container">
+
+        <div class="product-card">
+            <img src="Images/tv.jpg" alt="Sony Bravia LED" onclick="location.href='product.html?id=29'">
+            <h3>Sony Bravia LED</h3>
+            <p>₹85,000</p>
+            <button onclick="addToCartById(29)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(29)">❤️</span>
+        </div>
+
+        <div class="product-card">
+            <img src="Images/tv2.jpg" alt="Samsung 55 UHD" onclick="location.href='product.html?id=30'">
+            <h3>Samsung 55&quot; UHD</h3>
+            <p>₹1,20,000</p>
+            <button onclick="addToCartById(30)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(30)">❤️</span>
+        </div>
+
+        <div class="product-card">
+            <img src="Images/tv3.jpg" alt="OnePlus 50 QLED" onclick="location.href='product.html?id=31'">
+            <h3>OnePlus 50&quot; QLED</h3>
+            <p>₹55,000</p>
+            <button onclick="addToCartById(31)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(31)">❤️</span>
+        </div>
+
+        <div class="product-card">
+            <img src="Images/tv4.jpg" alt="Mi 43 LED" onclick="location.href='product.html?id=32'">
+            <h3>Mi 43&quot; LED</h3>
+            <p>₹30,000</p>
+            <button onclick="addToCartById(32)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(32)">❤️</span>
+        </div>
+
+        <div class="product-card">
+            <img src="Images/tv5.jpg" alt="Norcent LED" onclick="location.href='product.html?id=33'">
+            <h3>Norcent LED</h3>
+            <p>₹85,000</p>
+            <button onclick="addToCartById(33)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(33)">❤️</span>
+        </div>
+
+        <div class="product-card">
+            <img src="Images/tv6.jpg" alt="Panasonic 50" onclick="location.href='product.html?id=34'">
+            <h3>Panasonic 50&quot;</h3>
+            <p>₹50,000</p>
+            <button onclick="addToCartById(34)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(34)">❤️</span>
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= REFRIGERATORS ================= -->
+<section class="products">
+    <h3 class="left-heading">Refrigerators</h3>
+    <div class="product-container">
+
+        <div class="product-card">
+            <img src="Images/refrigerator" alt="LG 260L" onclick="location.href='product.html?id=35'">
+            <h3>LG 260L</h3>
+            <p>₹25,000</p>
+            <button onclick="addToCartById(35)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(35)">❤️</span>
+        </div>
+
+        <div class="product-card">
+            <img src="Images/refrigerator2.jpg" alt="Whirlpool 253L" onclick="location.href='product.html?id=36'">
+            <h3>Whirlpool 253L</h3>
+            <p>₹23,500</p>
+            <button onclick="addToCartById(36)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(36)">❤️</span>
+        </div>
+
+        <div class="product-card">
+            <img src="Images/refrigerator3.jpg" alt="Samsung 265L" onclick="location.href='product.html?id=37'">
+            <h3>Samsung 265L</h3>
+            <p>₹24,000</p>
+            <button onclick="addToCartById(37)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(37)">❤️</span>
+        </div>
+
+        <div class="product-card">
+            <img src="Images/refrigerator4.jpg" alt="Godrej 240L" onclick="location.href='product.html?id=38'">
+            <h3>Godrej 240L</h3>
+            <p>₹22,000</p>
+            <button onclick="addToCartById(38)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(38)">❤️</span>
+        </div>
+
+        <div class="product-card">
+            <img src="Images/refrigerator5.jpg" alt="Haier 255L" onclick="location.href='product.html?id=39'">
+            <h3>Haier 255L</h3>
+            <p>₹21,500</p>
+            <button onclick="addToCartById(39)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(39)">❤️</span>
+        </div>
+
+        <div class="product-card">
+            <img src="Images/refrigerator6.jpg" alt="Panasonic 265L" onclick="location.href='product.html?id=40'">
+            <h3>Panasonic 265L</h3>
+            <p>₹26,000</p>
+            <button onclick="addToCartById(40)">Add to Cart</button>
+            <span class="wishlist" onclick="addToWishlistById(40)">❤️</span>
+        </div>
+
+    </div>
+</section>
+<script src="products.js"></script>
+<script src="script.js"></script>
+<script>
+function wrapProductsInRows() {
+    const productSections = document.querySelectorAll('.products');
+    productSections.forEach(section => {
+        const cards = Array.from(section.querySelectorAll('.product-card'));
+        if(cards.length === 0) return;
+
+        // Remove cards temporarily
+        cards.forEach(c => c.remove());
+
+        // Wrap in rows of 3
+        for(let i = 0; i < cards.length; i += 3){
+            const row = document.createElement('div');
+            row.className = 'row';
+            cards.slice(i, i + 3).forEach(c => row.appendChild(c));
+            section.appendChild(row);
+        }
+    });
+}
+
+// Call after page load
+window.addEventListener('DOMContentLoaded', wrapProductsInRows);
+</script>
+
+
+
+<!-- ================= APP DOWNLOAD SECTION ================= -->
+<section class="app-download">
+  <div class="app-box">
+    <div class="app-text">
+      <h2>Download Our Shopping App</h2>
+      <p>Shop faster, get exclusive app-only deals and track orders easily.</p>
+
+      <div class="store-buttons">
+        <a href="#" class="store-btn">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg">
+        </a>
+        <a href="#" class="store-btn">
+          <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg">
+        </a>
+      </div>
+    </div>
+
+    <div class="app-image">
+      <img src="https://cdn-icons-png.flaticon.com/512/891/891419.png"
+     alt="Mobile App"
+     style="width:180px; height:auto;">
+
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY CHOOSE US ================= -->
+<section class="why-us">
+  <h2>Why Choose Us</h2>
+  <div class="why-grid">
+    <div class="why-card">
+      <h3>🚚 Fast Delivery</h3>
+      <p>Quick & safe delivery across India.</p>
+    </div>
+    <div class="why-card">
+      <h3>💳 Secure Payments</h3>
+      <p>100% secure payment methods.</p>
+    </div>
+    <div class="why-card">
+      <h3>⭐ Trusted Reviews</h3>
+      <p>Verified customer ratings & reviews.</p>
+    </div>
+    <div class="why-card">
+      <h3>📦 Easy Returns</h3>
+      <p>Hassle-free 7 day return policy.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= NEWSLETTER ================= -->
+<section class="newsletter">
+  <h2>Subscribe for Offers</h2>
+  <p>Get latest deals & discounts directly in your inbox.</p>
+
+  <form>
+    <input type="email" placeholder="Enter your email" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <h3>About</h3>
+      <p>Your trusted online shopping destination.</p>
+    </div>
+
+    <div>
+      <h3>Categories</h3>
+      <ul>
+        <li>Mobiles</li>
+        <li>Laptops</li>
+        <li>AC</li>
+        <li>Television</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Help</h3>
+      <ul>
+        <li>FAQ</li>
+        <li>Returns</li>
+        <li>Support</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Follow Us</h3>
+      <div class="socials">
+        <span>📘</span>
+        <span>📸</span>
+        <span>🐦</span>
+        <span>▶️</span>
+      </div>
+    </div>
+  </div>
+
+  
+</footer>
+
+
+
+
+<!-- ===== FOOTER END NOTE ===== -->
+<section class="end-note">
+  <p>❤️ Thank you for shopping with <b>E-Mart</b></p>
+  <small>© 2026 E-Mart. All rights reserved.</small>
+</section>
+
+
+
+
+</body>
+</html>

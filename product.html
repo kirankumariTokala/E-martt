@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Product Details</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+<h1>E-Mart</h1>
+<a href="index.html">Home</a>
+<a href="cart.html">Cart</a>
+<a href="wishlist.html">Wishlist</a>
+</header>
+
+<div id="product-details"></div>
+
+<script src="products.js"></script>
+<script src="script.js"></script>
+<script>
+const params=new URLSearchParams(window.location.search);
+const id=parseInt(params.get("id"));
+const product=products.find(p=>p.id===id);
+const box=document.getElementById("product-details");
+
+if(!product){ box.innerHTML="<h2>Product Not Found</h2>"; }
+else{
+  box.innerHTML=`
+    <div class="product-details">
+      <img src="${product.img}" width="300">
+      <h2>${product.name}</h2>
+      <p><b>Price:</b> ₹${product.price}</p>
+      <p>${product.desc}</p>
+      <p><b>Rating:</b> ${product.rating}⭐</p>
+      <button onclick="addToCartById(${product.id})">Add to Cart</button>
+      <button onclick="addToWishlistById(${product.id})">❤️ Wishlist</button>
+      <button onclick="showBuyDetails(${product.id})">Buy</button>
+    </div>
+  `;
+}
+</script><hr>
+
+
+<hr>
+
+<h2>Customer Ratings & Reviews</h2>
+
+<!-- Rating Summary -->
+<div class="rating-summary">
+  <div class="rating-row">
+    <span>★★★★★</span>
+    <div class="bar"><div style="width:70%"></div></div>
+  </div>
+  <div class="rating-row">
+    <span>★★★★☆</span>
+    <div class="bar"><div style="width:15%"></div></div>
+  </div>
+  <div class="rating-row">
+    <span>★★★☆☆</span>
+    <div class="bar"><div style="width:10%"></div></div>
+  </div>
+  <div class="rating-row">
+    <span>★★☆☆☆</span>
+    <div class="bar"><div style="width:5%"></div></div>
+  </div>
+</div>
+
+<!-- Reviews -->
+<div id="reviews"></div>
+
+<!-- Add Review -->
+<h3>Add Your Review</h3>
+<form id="reviewForm">
+  <input type="text" id="userName" placeholder="Your Name" required>
+
+  <select id="userRating">
+    <option value="5">★★★★★ Excellent</option>
+    <option value="4">★★★★☆ Good</option>
+    <option value="3">★★★☆☆ Average</option>
+    <option value="2">★★☆☆☆ Bad</option>
+    <option value="1">★☆☆☆☆ Very Bad</option>
+  </select>
+
+  <textarea id="userComment" placeholder="Write review" required></textarea>
+  <button type="submit">Submit Review</button>
+</form>
+
+
+
+<script>
+const urlParams = new URLSearchParams(window.location.search);
+const productId = urlParams.get("id");
+
+// Default reviews per product
+const defaultReviews = {
+  1: [
+    {name:"Ravi", rating:5, comment:"Excellent mobile 🔥"},
+    {name:"Suresh", rating:4, comment:"Good camera"},
+    {name:"Anil", rating:3, comment:"Average battery"},
+    {name:"Kiran", rating:2, comment:"Heating issue"}
+  ],
+  2: [
+    {name:"Neha", rating:5, comment:"Loving iPhone 13!"},
+    {name:"Ramesh", rating:4, comment:"Camera is amazing"},
+    {name:"Priya", rating:3, comment:"Battery could be better"},
+    {name:"Ajay", rating:2, comment:"Expensive but okay"}
+  ],
+  3: [
+    {name:"Vikram", rating:5, comment:"OnePlus Nord rocks!"},
+    {name:"Anjali", rating:4, comment:"Good performance"},
+    {name:"Sita", rating:3, comment:"Average display"},
+    {name:"Rohit", rating:2, comment:"Software bugs occasionally"}
+  ],
+  4: [
+    {name:"Kavya", rating:5, comment:"Redmi Note is value for money!"},
+    {name:"Manish", rating:4, comment:"Nice design"},
+    {name:"Shreya", rating:3, comment:"Average battery"},
+    {name:"Ajay", rating:2, comment:"Slow at times"}
+  ],
+  5: [
+    {name:"Rahul", rating:5, comment:"Realme 11 is awesome!"},
+    {name:"Sneha", rating:4, comment:"Good camera quality"},
+    {name:"Deepak", rating:3, comment:"Screen quality okay"},
+    {name:"Pooja", rating:2, comment:"Minor heating issues"}
+  ],
+  6: [
+    {name:"Arjun", rating:5, comment:"ASUS Vivobook is smooth!"},
+    {name:"Divya", rating:4, comment:"Good for work"},
+    {name:"Nikhil", rating:3, comment:"Battery could be better"},
+    {name:"Meena", rating:2, comment:"Gets hot sometimes"}
+  ],
+  7: [
+    {name:"Rohini", rating:5, comment:"Lenovo IdeaPad is fantastic!"},
+    {name:"Sanjay", rating:4, comment:"Good build quality"},
+    {name:"Tina", rating:3, comment:"Average display"},
+    {name:"Vijay", rating:2, comment:"Fan is noisy"}
+  ],
+  8: [
+    {name:"Anita", rating:5, comment:"Apple MacBook is awesome!"},
+    {name:"Karthik", rating:4, comment:"Battery lasts long"},
+    {name:"Neelam", rating:3, comment:"Expensive but worth it"},
+    {name:"Ramesh", rating:2, comment:"Limited ports"}
+  ],
+  9: [
+    {name:"Akash", rating:5, comment:"HP Pavilion works well!"},
+    {name:"Deepa", rating:4, comment:"Good performance"},
+    {name:"Ritika", rating:3, comment:"Screen quality average"},
+    {name:"Ajay", rating:2, comment:"Battery drains quickly"}
+  ],
+  10: [
+    {name:"Sonia", rating:5, comment:"VICTUS laptop is fast!"},
+    {name:"Rohit", rating:4, comment:"Good graphics"},
+    {name:"Nisha", rating:3, comment:"Average battery"},
+    {name:"Kiran", rating:2, comment:"Fan is loud"}
+  ],
+  11: [
+    {name:"Aravind", rating:5, comment:"Acer Aspire is excellent!"},
+    {name:"Rupa", rating:4, comment:"Good design"},
+    {name:"Vikas", rating:3, comment:"Battery okay"},
+    {name:"Pooja", rating:2, comment:"Heating issues sometimes"}
+  ],
+  12: [
+    {name:"Sam", rating:5, comment:"Apple Watch Series 8 is perfect!"},
+    {name:"Ria", rating:4, comment:"Great features"},
+    {name:"Tina", rating:3, comment:"Battery could improve"},
+    {name:"Ajay", rating:2, comment:"Screen scratches easily"}
+  ],
+  13: [
+    {name:"Neel", rating:5, comment:"Samsung Galaxy Watch 5 is awesome!"},
+    {name:"Priya", rating:4, comment:"Good health tracking"},
+    {name:"Ravi", rating:3, comment:"Screen could be brighter"},
+    {name:"Meena", rating:2, comment:"Not for small wrists"}
+  ],
+  14: [
+    {name:"Kiran", rating:5, comment:"Fossil Gen 6 is stylish!"},
+    {name:"Divya", rating:4, comment:"Good battery"},
+    {name:"Rohit", rating:3, comment:"Expensive sometimes"},
+    {name:"Anjali", rating:2, comment:"Slow occasionally"}
+  ],
+  15: [
+    {name:"Rahul", rating:5, comment:"Realme Watch 3 is very good!"},
+    {name:"Sonia", rating:4, comment:"Value for money"},
+    {name:"Tina", rating:3, comment:"Screen small"},
+    {name:"Ajay", rating:2, comment:"Limited apps"}
+  ],
+  16: [
+    {name:"Manish", rating:5, comment:"Noise ColorFit Ultra is amazing!"},
+    {name:"Neha", rating:4, comment:"Good battery life"},
+    {name:"Deepak", rating:3, comment:"Screen resolution okay"},
+    {name:"Pooja", rating:2, comment:"Limited features"}
+  ],
+  17: [
+    {name:"Vikram", rating:5, comment:"boAt Wave Pro is excellent!"},
+    {name:"Anita", rating:4, comment:"Lightweight and comfy"},
+    {name:"Sanjay", rating:3, comment:"Battery could last longer"},
+    {name:"Rohini", rating:2, comment:"Screen small"}
+  ],
+  18: [
+    {name:"Rohit", rating:5, comment:"LG Dual Inverter AC works perfectly!"},
+    {name:"Neha", rating:4, comment:"Cooling is fast"},
+    {name:"Arjun", rating:3, comment:"Noise a bit high"},
+    {name:"Pooja", rating:2, comment:"Remote difficult to use"}
+  ],
+  19: [
+    {name:"Karthik", rating:5, comment:"FALCON AC is powerful!"},
+    {name:"Priya", rating:4, comment:"Good energy efficiency"},
+    {name:"Rahul", rating:3, comment:"Installation was slow"},
+    {name:"Sonia", rating:2, comment:"Minor leakage sometimes"}
+  ],
+  20: [
+    {name:"Vikram", rating:5, comment:"Samsung 1.5 Ton AC is excellent!"},
+    {name:"Anjali", rating:4, comment:"Very silent"},
+    {name:"Ria", rating:3, comment:"Design okay"},
+    {name:"Ramesh", rating:2, comment:"Expensive"}
+  ],
+  21: [
+    {name:"Manish", rating:5, comment:"Haier 1.5 Ton AC works well!"},
+    {name:"Divya", rating:4, comment:"Good cooling"},
+    {name:"Rohit", rating:3, comment:"Average noise"},
+    {name:"Pooja", rating:2, comment:"Remote quality low"}
+  ],
+  22: [
+    {name:"Akash", rating:5, comment:"Blue Star AC is reliable!"},
+    {name:"Tina", rating:4, comment:"Efficient cooling"},
+    {name:"Neel", rating:3, comment:"Slight noise"},
+    {name:"Ritika", rating:2, comment:"Expensive for size"}
+  ],
+  23: [
+    {name:"Rahul", rating:5, comment:"boAt Airdopes 131 sound is amazing!"},
+    {name:"Sonia", rating:4, comment:"Good battery"},
+    {name:"Kiran", rating:3, comment:"Fit is okay"},
+    {name:"Rohit", rating:2, comment:"Bass low sometimes"}
+  ],
+  24: [
+    {name:"Priya", rating:5, comment:"boAt Airdopes 112 is perfect!"},
+    {name:"Manish", rating:4, comment:"Comfortable"},
+    {name:"Deepak", rating:3, comment:"Battery drains quickly"},
+    {name:"Tina", rating:2, comment:"Noise leaks a bit"}
+  ],
+  25: [
+    {name:"Vikram", rating:5, comment:"Realme Buds Q2 are excellent!"},
+    {name:"Anjali", rating:4, comment:"Affordable and good sound"},
+    {name:"Ria", rating:3, comment:"Fit not perfect"},
+    {name:"Ramesh", rating:2, comment:"Connection issues sometimes"}
+  ],
+  26: [
+    {name:"Kavya", rating:5, comment:"Noise Air Buds great!"},
+    {name:"Sanjay", rating:4, comment:"Good sound"},
+    {name:"Neha", rating:3, comment:"Battery okay"},
+    {name:"Ajay", rating:2, comment:"Noise leaks sometimes"}
+  ],
+  27: [
+    {name:"Arjun", rating:5, comment:"Samsung Galaxy Buds excellent!"},
+    {name:"Divya", rating:4, comment:"Comfortable"},
+    {name:"Rohit", rating:3, comment:"Average bass"},
+    {name:"Pooja", rating:2, comment:"Price high"}
+  ],
+  28: [
+    {name:"Kiran", rating:5, comment:"Samsung Galaxy Buds 2 amazing!"},
+    {name:"Neha", rating:4, comment:"Good sound"},
+    {name:"Rahul", rating:3, comment:"Fit could be better"},
+    {name:"Sonia", rating:2, comment:"Battery drains fast"}
+  ],
+  29: [
+    {name:"Vikram", rating:5, comment:"Sony Bravia LED excellent!"},
+    {name:"Anjali", rating:4, comment:"Great display"},
+    {name:"Rohit", rating:3, comment:"Pricey"},
+    {name:"Priya", rating:2, comment:"No smart features"}
+  ],
+  30: [
+    {name:"Rahul", rating:5, comment:"Samsung 55 UHD awesome!"},
+    {name:"Sonia", rating:4, comment:"Great picture quality"},
+    {name:"Ramesh", rating:3, comment:"Limited apps"},
+    {name:"Kiran", rating:2, comment:"Price high"}
+  ],
+  31: [
+    {name:"Neha", rating:5, comment:"OnePlus 50 QLED amazing!"},
+    {name:"Vikram", rating:4, comment:"Good brightness"},
+    {name:"Tina", rating:3, comment:"Audio average"},
+    {name:"Ajay", rating:2, comment:"Price could be lower"}
+  ],
+  32: [
+    {name:"Rohit", rating:5, comment:"Mi 43 LED perfect!"},
+    {name:"Sonia", rating:4, comment:"Affordable and good"},
+    {name:"Priya", rating:3, comment:"Battery life okay"},
+    {name:"Kiran", rating:2, comment:"Limited ports"}
+  ],
+  33: [
+    {name:"Rahul", rating:5, comment:"Norcent LED excellent!"},
+    {name:"Divya", rating:4, comment:"Good display"},
+    {name:"Rohit", rating:3, comment:"Average sound"},
+    {name:"Pooja", rating:2, comment:"Price high"}
+  ],
+  34: [
+    {name:"Vikram", rating:5, comment:"Panasonic 50 LED awesome!"},
+    {name:"Anjali", rating:4, comment:"Bright colors"},
+    {name:"Neha", rating:3, comment:"No smart features"},
+    {name:"Rohit", rating:2, comment:"Expensive"}
+  ],
+  35: [
+    {name:"Kiran", rating:5, comment:"LG 260L Refrigerator perfect!"},
+    {name:"Sonia", rating:4, comment:"Good cooling"},
+    {name:"Rahul", rating:3, comment:"Average design"},
+    {name:"Priya", rating:2, comment:"Expensive"}
+  ],
+  36: [
+    {name:"Neha", rating:5, comment:"Whirlpool 253L Refrigerator excellent!"},
+    {name:"Vikram", rating:4, comment:"Spacious and good cooling"},
+    {name:"Tina", rating:3, comment:"Average energy efficiency"},
+    {name:"Ajay", rating:2, comment:"Pricey"}
+  ],
+  37: [
+    {name:"Rohit", rating:5, comment:"Samsung 265L Refrigerator great!"},
+    {name:"Sonia", rating:4, comment:"Good design"},
+    {name:"Priya", rating:3, comment:"Average cooling"},
+    {name:"Kiran", rating:2, comment:"Expensive"}
+  ],
+  38: [
+    {name:"Rahul", rating:5, comment:"Godrej 240L Refrigerator awesome!"},
+    {name:"Neha", rating:4, comment:"Good cooling"},
+    {name:"Rohit", rating:3, comment:"Average design"},
+    {name:"Priya", rating:2, comment:"Pricey"}
+  ],
+  39: [
+    {name:"Vikram", rating:5, comment:"Haier 255L Refrigerator perfect!"},
+    {name:"Anjali", rating:4, comment:"Spacious and efficient"},
+    {name:"Neha", rating:3, comment:"Average noise"},
+    {name:"Rohit", rating:2, comment:"Price high"}
+  ],
+  40: [
+    {name:"Kiran", rating:5, comment:"Panasonic 265L Refrigerator excellent!"},
+    {name:"Sonia", rating:4, comment:"Good cooling and design"},
+    {name:"Rahul", rating:3, comment:"Average energy usage"},
+    {name:"Priya", rating:2, comment:"Expensive"}
+  ]
+};
+
+// Load reviews
+function loadReviews(){
+  const box = document.getElementById("reviews");
+  let reviews = JSON.parse(localStorage.getItem("reviews_"+productId))
+              || defaultReviews[productId] || [];
+
+  box.innerHTML = "";
+  reviews.forEach(r => {
+    box.innerHTML += `
+      <div class="review">
+        <strong>${r.name}</strong>
+        <div class="review-stars">${"★".repeat(r.rating)}${"☆".repeat(5-r.rating)}</div>
+        <p>${r.comment}</p>
+      </div>
+    `;
+  });
+}
+
+// Add review
+document.getElementById("reviewForm").onsubmit = function(e){
+  e.preventDefault();
+
+  const name = userName.value;
+  const rating = Number(userRating.value);
+  const comment = userComment.value;
+
+  const key = "reviews_"+productId;
+  let reviews = JSON.parse(localStorage.getItem(key)) || [];
+
+  reviews.push({name, rating, comment});
+  localStorage.setItem(key, JSON.stringify(reviews));
+
+  this.reset();
+  loadReviews();
+};
+
+loadReviews();
+</script>
+
+
+</body>
+</html>
